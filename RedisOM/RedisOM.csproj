@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Redis.OM" Version="0.2.3" />
+    <PackageReference Include="Bogus" Version="34.0.2" />
+    <PackageReference Include="Bogus.Locations" Version="34.0.2" />
+    <PackageReference Include="NRedisStack" Version="0.9.0" />
+    <PackageReference Include="Redis.OM" Version="0.5.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 

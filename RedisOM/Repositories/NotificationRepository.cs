@@ -6,32 +6,32 @@ namespace RedisOM.Repositories
 {
     public class NotificationRepository
     {
-        private readonly RedisDBContext RedisDBContext;
+        private readonly RedisDbContext _redisDbContext;
 
-        public NotificationRepository(RedisDBContext redisDBContext)
+        public NotificationRepository(RedisDbContext redisDbContext)
         {
-            RedisDBContext = redisDBContext;
+            _redisDbContext = redisDbContext;
         }
 
 
         public async Task<string> AddNotification(Notification notification)
         {
-            return await RedisDBContext.AddNotification(notification);
+            return await _redisDbContext.AddNotification(notification);
         }
 
-        public async Task<List<Notification>> FilterNotificationsByVehicleID(string vehicleID)
+        public async Task<IList<Notification>> FilterNotificationsByVehicleId(string vehicleId)
         {
-            return await RedisDBContext.FilterNotificationsByVehicleId(vehicleID);
+            return await _redisDbContext.FilterNotificationsByVehicleId(vehicleId);
         }
 
         internal async Task<List<Notification>> FilterNotificationsByDismissedBy(string dismissedBy)
         {
-            return await RedisDBContext.FilterNotificationsByDismissedBy(dismissedBy);
+            return await _redisDbContext.FilterNotificationsByDismissedBy(dismissedBy);
         }
 
         public async Task<List<Notification>> GetAllNotifications()
         {
-            return await RedisDBContext.GetAllNotifications();
+            return await _redisDbContext.GetAllNotifications();
         }
     }
 }

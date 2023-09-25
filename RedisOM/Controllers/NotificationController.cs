@@ -25,9 +25,9 @@ namespace RedisOM.Controllers
         }
         
         [HttpGet("GetByVehicleCode/{vehicleCode}")]
-        public async Task<List<Notification>> GetNotificationByVehicleCode(string vehicleCode)
+        public async Task<IList<Notification>> GetNotificationByVehicleCode(string vehicleCode)
         {
-            return await NotificationRepo.FilterNotificationsByVehicleID(vehicleCode);
+            return await NotificationRepo.FilterNotificationsByVehicleId(vehicleCode);
         }
         
         [HttpGet("GetByDismissedBy/{dismissedBy}")]

@@ -15,13 +15,15 @@ namespace RedisOM.HostedService
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            var exisitedIndices = (await _provicder.Connection.ExecuteAsync("FT._LIST")).ToArray().Select(x => x.ToString());
-
+            // var exisitedIndices = (await _provicder.Connection.ExecuteAsync("FT._LIST")).ToArray().Select(x => x.ToString());
+            //
             // if (exisitedIndices.Any(index => index == "notification-idx"))
             // {
             //     await _provicder.Connection.DropIndexAsync(typeof(Notification));
             // }
             await _provicder.Connection.CreateIndexAsync(typeof(Notification));
+            await _provicder.Connection.CreateIndexAsync(typeof(User));
+            await _provicder.Connection.CreateIndexAsync(typeof(TripLocation));
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

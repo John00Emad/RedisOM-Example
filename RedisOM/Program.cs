@@ -1,7 +1,9 @@
+using Bogus;
 using Redis.OM;
 using RedisOM.HostedService;
 using RedisOM.RedisContext;
 using RedisOM.Repositories;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +14,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<RedisDBContext>();
+builder.Services.AddSingleton<RedisDbContext>();
 builder.Services.AddSingleton<NotificationRepository>();
+builder.Services.AddSingleton<UserRepository>();
+builder.Services.AddSingleton<TripLocationsRepository>();
+
+builder.Services.AddTransient<Faker>();
 
 builder.Services.AddSingleton(new RedisConnectionProvider(builder.Configuration["RedisConnectionString"]));
+builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(builder.Configuration["RedisConnectionMultiplexerString"]));
 builder.Services.AddHostedService<IndexCreationService>();
 
 var app = builder.Build();
